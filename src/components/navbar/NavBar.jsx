@@ -61,7 +61,7 @@ function NavBar() {
         <div className="logo">
           {/* تم تغليف اللوغو برابط وإضافة الكلاس للصورة */}
           <a href="/">
-            <img src="/logo.png" alt="Hikely Logo" className="logo-img" />
+            <img src="/public/logo.png" alt="Hikely Logo" className="logo-img" />
           </a>
         </div>
 
