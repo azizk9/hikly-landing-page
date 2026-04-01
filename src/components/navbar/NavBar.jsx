@@ -13,6 +13,7 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import "./NavBar.css";
+
 function NavBar() {
   const [language, setLanguage] = useState("EN");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -56,21 +57,22 @@ function NavBar() {
   };
 
   return (
-    <header className="topbar" dir={current.dir}> {/* تم تغيير الكلاس ليتوافق مع الـ CSS */}
-      <div className="topbar-container"> {/* تم تغيير الكلاس ليتوافق مع الـ CSS */}
+    <header className={`topbar ${menuOpen ? "nav-open" : ""}`} dir={current.dir}>
+      <div className="topbar-container">
+        {/* --- اللوغو (يسار) --- */}
         <div className="logo">
-          {/* تم تغليف اللوغو برابط وإضافة الكلاس للصورة */}
           <a href="/">
-            <img src="/public/logo.png" alt="Hikely Logo" className="logo-img" />
+            <img src="/logo.png" alt="Hikely Logo" className="logo-img" />
           </a>
         </div>
 
-        <nav className={`top-nav ${menuOpen ? "active" : ""}`}> {/* تم تغيير الكلاس */}
+        {/* --- القائمة الرئيسية (تتوسط في الشاشات الكبيرة) --- */}
+        <nav className={`top-nav ${menuOpen ? "active" : ""}`}>
           <ul className="nav-links">
             {current.items.map((item, index) => {
               const Icon = item.icon;
               return (
-                <li key={index} onClick={() => setMenuOpen(false)}>
+                <li key={index} onClick={() => setMenuOpen(false)} style={{ '--i': index }}>
                   <a href="#">
                     <Icon className="nav-icon" />
                     <span>{item.label}</span>
@@ -80,71 +82,44 @@ function NavBar() {
             })}
           </ul>
 
-          <div className="mobile-actions">
-            <div className="lang-wrapper">
-              <button
-                className="lang-btn"
-                onClick={() => setLangOpen(!langOpen)}
-                type="button"
-              >
-                <FaGlobe />
-                <span>{language}</span>
-                <FaChevronDown className={`lang-arrow ${langOpen ? "rotate" : ""}`} /> {/* تم تغيير اسم الكلاس */}
-              </button>
-
-              {langOpen && (
-                <div className="lang-dropdown">
-                  <button onClick={() => changeLanguage("EN")} type="button">
-                    English
-                  </button>
-                  <button onClick={() => changeLanguage("AR")} type="button">
-                    العربية
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <button className="book-trip-btn" type="button"> {/* تم تغيير الكلاس */}
+          {/* تظهر فقط داخل القائمة الجانبية في الموبايل */}
+          <div className="mobile-actions mobile-only">
+            <button className="book-trip-btn pulse" type="button">
               <span>{current.book}</span>
               <FaWhatsapp />
             </button>
           </div>
         </nav>
 
-        <div className="topbar-actions"> {/* تم تغيير الكلاس ليتوافق مع الـ CSS */}
-          <div className="lang-wrapper desktop-only">
-            <button
-              className="lang-btn"
-              onClick={() => setLangOpen(!langOpen)}
-              type="button"
-            >
-              <FaGlobe />
-              <span>{language}</span>
-              <FaChevronDown className={`lang-arrow ${langOpen ? "rotate" : ""}`} /> {/* تم تغيير اسم الكلاس */}
-            </button>
+        {/* --- الأزرار الجانبية (يمين) --- */}
+        <div className="topbar-actions">
+        <div className="lang-wrapper">
+  <button className="lang-btn" onClick={() => setLangOpen(!langOpen)}>
+    <FaGlobe />
+    <span className="lang-text">{language}</span>
+    <FaChevronDown className={`lang-arrow ${langOpen ? "rotate" : ""}`} />
+  </button>
+  
+  {langOpen && (
+    <div className="lang-dropdown">
+      <button onClick={() => changeLanguage("EN")}>
+        English {language === "EN" && "✓"}
+      </button>
+      <button onClick={() => changeLanguage("AR")}>
+        العربية {language === "AR" && "✓"}
+      </button>
+    </div>
+  )}
+</div>
 
-            {langOpen && (
-              <div className="lang-dropdown">
-                <button onClick={() => changeLanguage("EN")} type="button">
-                  English
-                </button>
-                <button onClick={() => changeLanguage("AR")} type="button">
-                  العربية
-                </button>
-              </div>
-            )}
-          </div>
-
-          <button className="book-trip-btn desktop-only" type="button"> {/* تم تغيير الكلاس */}
+          {/* زر الحجز للديسك توب فقط */}
+          <button className="book-trip-btn desktop-only pulse" type="button">
             <span>{current.book}</span>
             <FaWhatsapp />
           </button>
 
-          <button
-            className="menu-toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
-            type="button"
-          >
+          {/* زر الهامبرغر - يختفي إجبارياً في الشاشات الكبيرة بفضل كلاس mobile-only */}
+          <button className="menu-toggle mobile-only" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>

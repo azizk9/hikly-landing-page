@@ -374,3 +374,37 @@
     grid-template-columns: 1fr;
   }
 }
+/* --- تعديل قسم الإحصائيات للشاشات الصغيرة --- */
+@media (max-width: 640px) {
+  /* ... الكود القديم الخاص بالهيرو ... */
+
+  .stats-container {
+    /* تغيير من 1fr إلى تكرار مرتين */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px 10px; /* مسافة بسيطة بين العناصر */
+    padding: 10px 5px;
+  }
+
+  .stat-item {
+    padding: 10px 5px;
+  }
+
+  .stat-icon {
+    font-size: 28px; /* تصغير الأيقونة قليلاً لتناسب المساحة */
+    margin-bottom: 6px;
+  }
+
+  .stat-number {
+    font-size: 22px; /* تصغير الخط ليناسب الجوال */
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 13px; /* تصغير النص التوضيحي */
+    line-height: 1.2;
+  }
+
+  .blue-star {
+    font-size: 18px;
+  }
+}
