@@ -1,6 +1,5 @@
 import "./blogs.css";
-import BlogCard from "./BlogCard";
-
+import BlogCard from "./blogcard";
 function BlogSection({ data }) {
   if (!data) return null;
 

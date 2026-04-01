@@ -12,8 +12,7 @@ import {
   FaTimes,
   FaChevronDown,
 } from "react-icons/fa";
-import "./navbar.css";
-
+import "./NavBar.css";
 function NavBar() {
   const [language, setLanguage] = useState("EN");
   const [menuOpen, setMenuOpen] = useState(false);
