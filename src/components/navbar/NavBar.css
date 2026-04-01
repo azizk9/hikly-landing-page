@@ -1,0 +1,332 @@
+/* المتغيرات الأساسية (أضفها إذا لم تكن موجودة في ملف آخر) */
+:root {
+  --color-primary: #ff6417; /* اللون البرتقالي الموجود في الزر */
+  --color-bg: #07131b;
+  --color-text: #ffffff;
+  --transition: all 0.3s ease;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* زيادة z-index لضمان الظهور فوق المحتوى */
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.topbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 84px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* --- تنسيقات اللوغو الجديدة --- */
+/* --- تنسيقات اللوغو المحدثة (تم تكبير الحجم) --- */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* لضمان التوسط */
+  flex-shrink: 0; /* يمنع انضغاط اللوغو في الشاشات الصغيرة */
+  padding: 10px 0; /* إضافة مسافة عمودية بسيطة */
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  line-height: 0; /* يزيل الفراغات الإضافية تحت الصورة */
+  text-decoration: none; /* إزالة خط الرابط */
+}
+
+.logo-img {
+  /* تم زيادة الارتفاع من 55px إلى 110px */
+  height: 110px; /* حجم كبير وواضح */
+  
+  /* إذا أردت تحديد حد أقصى للعرض أيضاً: */
+  /* max-width: 250px; */
+  
+  width: auto; /* الحفاظ على أبعاد الصورة الأصلية */
+  object-fit: contain; /* يضمن احتواء الصورة داخل الإطار بدون قص */
+  transition: transform var(--transition); /* تأثير سلاسة */
+}
+
+.logo-img:hover {
+  transform: scale(1.03); /* تأثير تكبير بسيط جداً عند التمرير لجذب الانتباه */
+}
+
+/* تعديلات التجاوب (Responsive) للشاشات الأصغر */
+
+/* الشاشات المتوسطة (Tablets) */
+@media (max-width: 1200px) {
+  .logo-img {
+    height: 90px; /* تصغير طفيف */
+  }
+}
+
+/* شاشات الموبايل (أفقية وعمودية) */
+@media (max-width: 992px) {
+  .topbar-container {
+    min-height: 90px; /* زيادة ارتفاع البار قليلاً لاستيعاب اللوغو */
+  }
+
+  .logo-img {
+    height: 80px; /* حجم مناسب للموبايل */
+  }
+}
+
+/* الشاشات الصغيرة جداً */
+@media (max-width: 640px) {
+  .topbar-container {
+    min-height: 80px;
+  }
+  
+  .logo-img {
+    height: 70px; /* حجم أصغر قليلاً للشاشات الضيقة جداً */
+  }
+}
+/* ------------------------------- */
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+/* تنسيق الروابط داخل القائمة */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* مسافة بين الأيقونة والنص */
+  transition: var(--transition);
+}
+
+.top-nav a:hover {
+  color: var(--color-primary);
+}
+
+/* تنسيق الأيقونات داخل الروابط */
+.nav-icon {
+  font-size: 18px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* تنسيق حاوية اللغة والمينو للموبايل */
+.lang-wrapper {
+  position: relative;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.lang-arrow {
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.lang-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #10202b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-top: 10px;
+  min-width: 120px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.lang-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lang-dropdown button:hover {
+  background: rgba(255, 100, 23, 0.1);
+  color: var(--color-primary);
+}
+
+.book-trip-btn {
+  background: var(--color-primary);
+  border: none;
+  color: white;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(255, 100, 23, 0.22);
+  transition: var(--transition);
+}
+
+.book-trip-btn:hover {
+  box-shadow: 0 12px 30px rgba(255, 100, 23, 0.35);
+  transform: translateY(-2deg);
+}
+
+/* إخفاء العناصر المحددة لـ Desktop */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-actions {
+  display: none; /* مخفية في الـ Desktop */
+}
+
+.menu-toggle {
+  display: none; /* مخفية في الـ Desktop */
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* الشاشات المتوسطة (Tablets) */
+@media (max-width: 1200px) {
+  .top-nav {
+    gap: 20px;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .logo-img {
+    height: 48px;
+  }
+}
+
+/* شاشات الموبايل (التحويل للمينو الجانبي) */
+@media (max-width: 992px) {
+  .topbar-container {
+    padding: 0 20px;
+    min-height: 70px;
+  }
+
+  .logo-img {
+    height: 45px;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .top-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0a1922;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: none; /* مخفي افتراضياً */
+  }
+
+  .top-nav.active {
+    display: flex; /* يظهر عند التفعيل */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .top-nav a {
+    padding: 15px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .mobile-actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .mobile-actions .lang-btn {
+    padding: 0;
+  }
+  
+  .mobile-actions .book-trip-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* الشاشات الصغيرة جداً */
+@media (max-width: 640px) {
+  .logo-img {
+    height: 40px;
+  }
+
+  .book-trip-btn {
+    height: 46px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+
+  .lang-btn {
+    font-size: 15px;
+  }
+}
