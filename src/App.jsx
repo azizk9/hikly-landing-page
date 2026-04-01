@@ -11,13 +11,11 @@ import galleryData from "./data/galleryData";
 import aboutData from "./data/aboutData";
 import blogData from "./data/blogData";
 import tripsData from "./data/tripsData";
-import heroData from "./data/heroData";
-import navbarData from "./data/navbarData";
 function App() {
   return (
     <>
       <NavBar />
-      <Hero data={heroData} />
+      <Hero />
       <AboutSection data={aboutData} />
   <TripsSection data={tripsData} />
       <GallerySection data={galleryData} />
